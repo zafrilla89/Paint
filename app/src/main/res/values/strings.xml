@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Paint</string>
+    <string name="nuevo">Nuevo</string>
+    <string name="guardar">Guardar</string>
+    <string name="cargar">Cargar</string>
+    <string name="colores">Elegir color</string>
+    <string name="formas">Herramientas de dibujo</string>
+    <string name="title_activity_herramientas_dibujo">Herramientas de dibujo</string>
+    <string name="aceptar">ACEPTAR</string>
+    <string name="dedos">NUMERO DE DEDOS</string>
+    <string name="dedo_1">1</string>
+    <string name="dedo_2">2</string>
+    <string name="dedo_3">3</string>
+    <string name="tamaño">TAMAÑO DE PINCEL</string>
+    <string name="tamaño1">1</string>
+    <string name="tamaño3">3</string>
+    <string name="tamaño5">5</string>
+    <string name="forma">FORMAS</string>
+    <string name="borrar">BORRAR</string>
+
+</resources>

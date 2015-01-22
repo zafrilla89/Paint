@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".Dibujo">
+    <item android:id="@+id/nuevo" android:title="@string/nuevo"
+        android:orderInCategory="100" android:showAsAction="never" />
+    <item android:id="@+id/guardar" android:title="@string/guardar"
+        android:orderInCategory="100" android:showAsAction="never" />
+    <item android:id="@+id/cargar" android:title="@string/cargar"
+        android:orderInCategory="100" android:showAsAction="never" />
+    <item android:id="@+id/color" android:title="@string/colores"
+        android:orderInCategory="100" android:showAsAction="never" />
+    <item android:id="@+id/formas" android:title="@string/formas"
+        android:orderInCategory="100" android:showAsAction="never" />
+</menu>
