@@ -167,5 +167,6 @@ public class Dibujo extends Activity  implements ColorPickerDialog.OnColorChange
         Uri uri = Uri.fromFile(archivo);
         intent.setData(uri);
         this.sendBroadcast(intent);
+        tostada("IMAGEN GUARDADA");
     }
 }
