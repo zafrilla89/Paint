@@ -74,7 +74,8 @@ public class Dibujo extends Activity  implements ColorPickerDialog.OnColorChange
                             if (et.getText().toString().compareTo("")==0){
                                 tostada("DEBES ESCRIBIR UN NOMBRE");
                             }else{
-                                v.guardar(et.getText().toString());
+                                String s=et.getText().toString();
+                                guardar(s);
                             }
                         }
                     });
@@ -134,8 +135,6 @@ public class Dibujo extends Activity  implements ColorPickerDialog.OnColorChange
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 String s = cursor.getString(columnIndex);
                 cursor.close();
-
-                Log.v("AAAAAAAA",s);
                 v.cargar(s);
             }
         }
@@ -149,5 +148,24 @@ public class Dibujo extends Activity  implements ColorPickerDialog.OnColorChange
 
     public void tostada (String s){
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
+    public void guardar(String s){
+        Bitmap mapaDeBits= v.guardar();
+        File carpeta = new File(Environment.getExternalStoragePublicDirectory
+                (Environment.DIRECTORY_PICTURES).getPath());
+        File archivo = new File(carpeta, s+".PNG");
+        try {
+            FileOutputStream fos = new FileOutputStream(archivo);
+            mapaDeBits.compress(
+                    Bitmap.CompressFormat.PNG, 90, fos);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        };
+        Intent intent = new Intent
+                (Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        Uri uri = Uri.fromFile(archivo);
+        intent.setData(uri);
+        this.sendBroadcast(intent);
     }
 }

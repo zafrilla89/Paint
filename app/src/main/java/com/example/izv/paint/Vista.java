@@ -1,6 +1,7 @@
 package com.example.izv.paint;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -8,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -17,6 +19,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.Serializable;
+import java.security.Principal;
 
 /**
  * Created by ZAFRA on 21/01/2015.
@@ -256,17 +259,8 @@ public class Vista extends View implements Serializable {
         invalidate();
     }
 
-    public void guardar(String s) {
-        File carpeta = new File(Environment.getExternalStoragePublicDirectory
-                (Environment.DIRECTORY_PICTURES).getPath());
-        File archivo = new File(carpeta, s+".PNG");
-        try {
-            FileOutputStream fos = new FileOutputStream(archivo);
-            mapaDeBits.compress(
-                    Bitmap.CompressFormat.PNG, 90, fos);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+    public Bitmap guardar() {
+        return mapaDeBits;
     }
 
     public void tamañoPincel(float tamaño) {
