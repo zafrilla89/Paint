@@ -26,25 +26,17 @@ import java.security.Principal;
  */
 public class Vista extends View implements Serializable {
 
+    int forma = 1;
+    float tamaño;
     private Paint pincel;
     private int alto, ancho;
     private Bitmap mapaDeBits;
     private Canvas lienzoFondo;
-    int forma = 1;
-    float tamaño;
     private Path[] rectaPoligonal = new Path[3];
     private Recta[] coordenadas = new Recta[3];
+    private float x0 = -1, y0 = -1, xi = -1, yi = -1;
+    private double radio = 0;
 
-    class Recta {
-        public float x0, y0, xi, yi;
-
-        Recta(float x0, float xi, float y0, float yi) {
-            this.x0 = x0;
-            this.xi = xi;
-            this.y0 = y0;
-            this.yi = yi;
-        }
-    }
 
     public Vista(Context context) {
         super(context);
@@ -59,17 +51,10 @@ public class Vista extends View implements Serializable {
         }
     }
 
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawBitmap(mapaDeBits, 0, 0, null);
-        lienzoFondo.drawLine(coordenadas[0].x0,coordenadas[0].y0,coordenadas[0].xi,coordenadas[0].yi,pincel);
-        lienzoFondo.drawLine(coordenadas[1].x0,coordenadas[1].y0,coordenadas[1].xi,coordenadas[1].yi,pincel);
-        lienzoFondo.drawLine(coordenadas[2].x0,coordenadas[2].y0,coordenadas[2].xi,coordenadas[2].yi,pincel);
-
-
-
         if (forma == 1 || forma == 2 || forma == 3) {
             canvas.drawLine(x0, y0, xi, yi, pincel);
         } else {
@@ -90,6 +75,12 @@ public class Vista extends View implements Serializable {
                         float yyy = Math.max(y0, yi);
                         RectF rf = new RectF(xx, yy, xxx, yyy);
                         canvas.drawOval(rf, pincel);
+                    }else{
+                        if (forma==12 || forma==13){
+                            lienzoFondo.drawLine(coordenadas[0].x0,coordenadas[0].y0,coordenadas[0].xi,coordenadas[0].yi,pincel);
+                            lienzoFondo.drawLine(coordenadas[1].x0,coordenadas[1].y0,coordenadas[1].xi,coordenadas[1].yi,pincel);
+                            lienzoFondo.drawLine(coordenadas[2].x0,coordenadas[2].y0,coordenadas[2].xi,coordenadas[2].yi,pincel);
+                        }
                     }
                 }
             }
@@ -106,9 +97,6 @@ public class Vista extends View implements Serializable {
         alto = h;
         ancho = w;
     }
-
-    private float x0 = -1, y0 = -1, xi = -1, yi = -1;
-    private double radio = 0;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -248,7 +236,6 @@ public class Vista extends View implements Serializable {
         File archivo = new File(s);
         mapaDeBits = Bitmap.createBitmap(ancho, alto,
                 Bitmap.Config.ARGB_8888);
-        Log.v("AAAAAAA",archivo.exists()+"");
         if (archivo.exists()) {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inMutable = true;
@@ -273,5 +260,16 @@ public class Vista extends View implements Serializable {
 
     public void color(int color) {
         pincel.setColor(color);
+    }
+
+    class Recta {
+        public float x0, y0, xi, yi;
+
+        Recta(float x0, float xi, float y0, float yi) {
+            this.x0 = x0;
+            this.xi = xi;
+            this.y0 = y0;
+            this.yi = yi;
+        }
     }
 }

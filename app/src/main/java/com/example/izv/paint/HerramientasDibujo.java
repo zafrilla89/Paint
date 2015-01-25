@@ -72,6 +72,7 @@ public class HerramientasDibujo extends Activity {
         setResult(Activity.RESULT_OK, i);
         this.finish();
     }
+
     public void dedo1(View v){
         activarbotones();
         d1.setEnabled(false);

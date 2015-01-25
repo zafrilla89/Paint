@@ -45,19 +45,13 @@ public class Dibujo extends Activity  implements ColorPickerDialog.OnColorChange
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_dibujo, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.nuevo) {
             v.nuevo();
             return true;
@@ -81,7 +75,6 @@ public class Dibujo extends Activity  implements ColorPickerDialog.OnColorChange
                     });
             alert.setNegativeButton(android.R.string.no,null);
             alert.show();
-
             return true;
         }
         if (id == R.id.cargar) {
