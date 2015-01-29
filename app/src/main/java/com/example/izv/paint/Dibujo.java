@@ -34,6 +34,8 @@ public class Dibujo extends Activity  implements ColorPickerDialog.OnColorChange
 
     private Vista v;
     private int alto, ancho, co;
+    private final static int HERRAMIENTAS=1, CARGA=2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +81,7 @@ public class Dibujo extends Activity  implements ColorPickerDialog.OnColorChange
         }
         if (id == R.id.cargar) {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intent, 2);
+            startActivityForResult(intent, CARGA);
             return true;
         }
         if (id == R.id.color) {
@@ -89,7 +91,7 @@ public class Dibujo extends Activity  implements ColorPickerDialog.OnColorChange
         }
         if (id == R.id.formas) {
             Intent i= new Intent(this, HerramientasDibujo.class);
-            startActivityForResult(i, 1);
+            startActivityForResult(i, HERRAMIENTAS);
 
             return true;
         }
@@ -100,7 +102,7 @@ public class Dibujo extends Activity  implements ColorPickerDialog.OnColorChange
     public void onActivityResult(int requestCode,
                                  int resultCode, Intent data){
         if (resultCode == Activity.RESULT_OK &&
-                requestCode == 1) {
+                requestCode == HERRAMIENTAS) {
             int forma=data.getIntExtra("forma",1);
             float tamaño=data.getFloatExtra("tamaño",1);
             if (forma==11){
@@ -117,7 +119,7 @@ public class Dibujo extends Activity  implements ColorPickerDialog.OnColorChange
             }
         }else{
             if (resultCode == Activity.RESULT_OK &&
-                    requestCode == 2) {
+                    requestCode == CARGA) {
                 Uri selectedImage = data.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
